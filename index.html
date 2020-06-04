@@ -38,22 +38,37 @@
     container: "map",
 		// TK this loaded style includes the dataset for filtering and location, and the map tile styling
     style: "mapbox://styles/ufnmaptest/ckb0e5f8q0o3e1il9tpcbvbp0",
-// set location for start of this story
+// set location for start of this story, point to From Telephoto to Macro location
 		center: [151.22,
           -33.83],
 		zoom:11
   });
 	//TK add fullscreen controls from https://docs.mapbox.com/mapbox-gl-js/example/fullscreen/
+	// TK ideally would be able to control this to be large but not fullscreen, need to break column/margin assigned to col-6
 	map.addControl(new mapboxgl.FullscreenControl());
 	// TK add navigation control and move to top left
 	var nav = new mapboxgl.NavigationControl();
 	map.addControl(nav, "top-left");
 
+// TK using principles from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/and placeholder JSON I created
 
+	// code from the next step will go here
+			map.on('click', function(e) {
+var features = map.queryRenderedFeatures(e.point, {
+	layers: ['dataset-ufnp-test'] // replace this with the name of the layer
+});
 
+if (!features.length) {
+	return;
+}
 
+var feature = features[0];
 
-
+var popup = new mapboxgl.Popup({ offset: [0, -15] })
+	 .setLngLat(feature.geometry.coordinates)
+	 .setHTML('<h3>' + feature.properties.name + '</h3><p><a href="' + feature.properties.url + '">read the full story</a></p>')
+	 .addTo(map);
+});
 
 	// TK add popup onClick using https://docs.mapbox.com/help/tutorials/add-points-pt-3/ DID NOT WORK
 // 	map.on('click', function(e) {
