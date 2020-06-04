@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>UFNP Initial Test</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="UNFP Map tests"
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+<link href="simple-grid.css" rel="stylesheet" >
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+
+</head>
+<body>
+	<div class="container">
+		<main>
+		<div class="row">
+			<div class="col-3">
+			</div>
+			<div class="col-6">
+				<div id="map"></div>
+			</div>
+			<div class="col-3">
+			</div>
+		</div>
+	</main>
+</div>
+
+
+
+
+<script>
+  mapboxgl.accessToken = "pk.eyJ1IjoidWZubWFwdGVzdCIsImEiOiJja2FybjQ0b2kwbzNoMnhwbG1oNnBwbzh6In0.IEdNzx7pvq0qiHAIZQckJw";
+  var map = new mapboxgl.Map({
+    container: "map",
+		// TK this loaded style includes the dataset for filtering and location, and the map tile styling
+    style: "mapbox://styles/ufnmaptest/ckb0e5f8q0o3e1il9tpcbvbp0",
+// set location for start of this story
+		center: [151.22,
+          -33.83],
+		zoom:11
+  });
+	//TK add fullscreen controls from https://docs.mapbox.com/mapbox-gl-js/example/fullscreen/
+	map.addControl(new mapboxgl.FullscreenControl());
+	// TK add navigation control and move to top left
+	var nav = new mapboxgl.NavigationControl();
+	map.addControl(nav, "top-left");
+
+
+
+
+
+
+
+	// TK add popup onClick using https://docs.mapbox.com/help/tutorials/add-points-pt-3/ DID NOT WORK
+// 	map.on('click', function(e) {
+//   var features = map.queryRenderedFeatures(e.point, {
+// 		// dataset layer name in studio builder
+//     layers: ['story-icons']
+//
+//   });
+//
+//   if (!features.length) {
+//     return;
+//   }
+//
+//   var feature = features[0];
+//
+//   var popup = new mapboxgl.Popup({ offset: [0, -15] })
+//     .setLngLat(feature.geometry.coordinates)
+//     .setHTML('<h3>' + feature.properties.name + '</h3><p>' + feature.properties.url + '</p>')
+//     .addTo(map);
+// });
+</script>
+
+</body>
+</html>
