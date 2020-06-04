@@ -21,8 +21,10 @@
 			<div class="col-3">
 			</div>
 			<div class="col-6">
+				<!-- TK draws the map. map div cannot have children -->
 				<div id="map"></div>
-                <nav id="filter-group" class="filter-group"></nav>
+<!-- TK contains filter nav -->
+								<nav id="filter-group" class="filter-group"></nav>
 			</div>
 			<div class="col-3">
 			</div>
@@ -35,13 +37,17 @@
 
 <script>
  mapboxgl.accessToken = "pk.eyJ1IjoidWZubWFwdGVzdCIsImEiOiJja2FybjQ0b2kwbzNoMnhwbG1oNnBwbzh6In0.IEdNzx7pvq0qiHAIZQckJw";
-    var places = {
-        'type': 'FeatureCollection',
+ // TK filtering by tag below is majority from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/
+ // TK ideally be able to pull this from the data is the map style being referenced, so as to make uploading changing data easier
+     var places = {
+         'type': 'FeatureCollection',
+ // TK geojson created w/in the dataset studio of mapbox, using placeholder values for the moment, exported as geojson file
+ // TK	   variable 'tags' replaced by 'icons' for the moment, will be returned soon
        "features": [
     {
       "type": "Feature",
       "properties": {
-        "icon": "funny",
+        "tags": "funny",
         "name": "Oar-Some Osprey",
         "location": "Opera Bar",
         "excerpt": "Lorem Ipsum",
@@ -72,7 +78,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/sometimes-nature-comes-to-you",
         "storyFullText": "Lorem Ipsum",
         "location": "Ivanhoe, Victoria, Australia",
-        "icon": "curious",
+        "tags": "curious",
         "wikidata": "Q3156237",
         "authorBio": "Lorem Ipsum"
       },
@@ -96,7 +102,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/telephoto-to-macro",
         "storyFullText": "Lorem Ipsum",
         "location": "Cammeray, New South Wales, Australia",
-        "icon": "funny",
+        "tags": "funny",
         "wikidata": "Q5026863",
         "authorBio": "Lorem Ipsum"
       },
@@ -120,7 +126,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/not-really-friends",
         "storyFullText": "Lorem Ipsum",
         "location": "Fitzroy, Victoria, Australia",
-        "icon": "funny",
+        "tags": "funny",
         "wikidata": "Q1421389",
         "authorBio": "Lorem Ipsum"
       },
@@ -144,7 +150,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/welcoming-a-change",
         "storyFullText": "Lorem Ipsum",
         "location": "Rozelle, New South Wales, Australia",
-        "icon": "joyful",
+        "tags": "joyful",
         "wikidata": "Q6270986",
         "authorBio": "Lorem Ipsum"
       },
@@ -168,7 +174,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/a-stunning-aussie-bee",
         "storyFullText": "Lorem Ipsum",
         "location": "Drummoyne, New South Wales, Australia",
-        "icon": "curious",
+        "tags": "curious",
         "wikidata": "Q5309255",
         "authorBio": "Lorem Ipsum"
       },
@@ -192,7 +198,7 @@
         "url": "https://urbanfieldnaturalist.org/stories/scrumptious-scats",
         "storyFullText": "Lorem Ipsum",
         "location": "Blue Mountains, New South Wales, Australia",
-        "icon": "curious",
+        "tags": "curious",
         "wikidata": "Q667529",
         "authorBio": "Lorem Ipsum"
       },
@@ -208,13 +214,16 @@
   ]
     };
 
+
+// TK variables above for filtergroup
     var filterGroup = document.getElementById('filter-group');
 
+// TK draws map in #map
   var map = new mapboxgl.Map({
     container: "map",
 		// TK this loaded style includes the dataset for filtering and location, and the map tile styling
     style: "mapbox://styles/ufnmaptest/ckb0e5f8q0o3e1il9tpcbvbp0",
-// set location for start of this story, point to From Telephoto to Macro location
+// TK set location for start of this story, point to From Telephoto to Macro location
 		center: [151.22,
           -33.83],
 		zoom:11
@@ -227,7 +236,7 @@
 	var nav = new mapboxgl.NavigationControl();
 	map.addControl(nav, "top-left");
 
-
+// TK actual filtering of variables begins here
     map.on('load', function() {
         // Add a GeoJSON source containing place coordinates and information.
         map.addSource('places', {
@@ -236,7 +245,7 @@
         });
 
         places.features.forEach(function(feature) {
-            var symbol = feature.properties['icon'];
+            var symbol = feature.properties['tags'];
             var layerID = 'poi-' + symbol;
 
             // Add a layer for this symbol type if it hasn't been added already.
@@ -250,7 +259,7 @@
                         'icon-size':6,
                         'icon-allow-overlap': true
                     },
-                    'filter': ['==', 'icon', symbol]
+                    'filter': ['==', 'tags', symbol]
                 });
 
                 // Add checkbox and label elements for the layer.
@@ -276,8 +285,11 @@
             }
         });
     });
+
+
 // TK using code from https://docs.mapbox.com/help/tutorials/add-points-pt-3/ placeholder JSON I created
 			map.on('click', function(e) {
+				// TK var pops identifies the marker pointed to
 var pops = map.queryRenderedFeatures(e.point, {
 	layers: ['dataset-ufnp-test'] // TK dataset layer name
 });
@@ -288,10 +300,12 @@ if (!pops.length) {
 
 var pops = pops[0];
 
-var popup = new mapboxgl.Popup({ offset: [0, -15] })
+// TK offset popup so it doesn't cover the marker
+
+var popup = new mapboxgl.Popup({ offset: [0, -30] })
 	 .setLngLat(pops.geometry.coordinates)
-	 // currently displays name of article and link to full article
-	 .setHTML('<h3>' + pops.properties.name + '</h3><p><a href="' + pops.properties.url + '">read the full story</a></p>')
+	 // TK currently displays name of article and link to full article
+	 .setHTML('<h4>' + pops.properties.name + '</h4><p><a href="' + pops.properties.url + '">read the full story</a></p>')
 	 .addTo(map);
 });
 
