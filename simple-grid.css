@@ -190,8 +190,25 @@ p {
   height: 50vh;
 }
 
-
-
+/* TKpopup styling */
+.mapboxgl-popup-content {
+  background-color: #cccee1;
+  color:#2e106a;
+max-height:200px;
+  margin: 0;
+  padding:15px;
+}
+.mapboxgl-popup-tip {
+  border-top-color:#cccee1;
+  border-bottom-color:#cccee1;
+}
+#map h5{
+  padding:0;
+  margin:0;
+}
+#map p{ padding:0;
+  margin: 0;
+}
 /* TK code temporarily copied from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/ to test inclusion of this element*/
 /* TK colours, text, and position changed but basically nothing else rn */
 .filter-group {
@@ -218,7 +235,7 @@ display: none;
 }
 
 .filter-group input[type='checkbox'] + label {
-background-color: #2e106a;
+background-color: #aeb0bf;
 display: block;
 cursor: pointer;
 padding: 10px;
@@ -226,7 +243,7 @@ border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .filter-group input[type='checkbox'] + label {
-background-color: #2e106a;
+background-color: #aeb0bf;
 text-transform: capitalize;
 }
 

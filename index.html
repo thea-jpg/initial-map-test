@@ -9,10 +9,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="UNFP Map tests">
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-<link href="simple-grid.css" rel="stylesheet" >
+
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
-
+<link href="simple-grid.css" rel="stylesheet" >
 </head>
 <body>
 	<div class="container">
@@ -21,10 +21,10 @@
 			<div class="col-3">
 			</div>
 			<div class="col-6">
-				<!-- TK draws the map. map div cannot have children -->
-				<div id="map"></div>
-<!-- TK contains filter nav -->
-								<nav id="filter-group" class="filter-group"></nav>
+
+				<!-- TK draws the map-->
+				<div id="map"><nav id="filter-group" class="filter-group"></nav></div>
+
 			</div>
 			<div class="col-3">
 			</div>
@@ -225,16 +225,16 @@
     style: "mapbox://styles/ufnmaptest/ckb0e5f8q0o3e1il9tpcbvbp0",
 // TK set location for start of this story, point to From Telephoto to Macro location
 		center: [151.22,
-          -33.83],
-		zoom:11
+			-33.8231],
+		zoom:12
   });
 
 	//TK add fullscreen controls from https://docs.mapbox.com/mapbox-gl-js/example/fullscreen/
 	// TK ideally would be able to control this to be large but not fullscreen, need to break column/margin assigned to col-6
 	map.addControl(new mapboxgl.FullscreenControl());
-	// TK add navigation control and move to top left
+	// TK add navigation control
 	var nav = new mapboxgl.NavigationControl();
-	map.addControl(nav, "top-left");
+	map.addControl(nav);
 
 // TK actual filtering of variables begins here
     map.on('load', function() {
@@ -262,6 +262,24 @@
                     'filter': ['==', 'tags', symbol]
                 });
 
+								// TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
+								// TK use to focus and change zoom
+								// Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
+								map.on('click', layerID, function(e) {
+								map.flyTo({ center: e.features[0].geometry.coordinates });
+								});
+
+								// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+								map.on('mouseenter', layerID, function() {
+								map.getCanvas().style.cursor = 'pointer';
+								});
+
+								// Change it back to a pointer when it leaves.
+								map.on('mouseleave', layerID, function() {
+								map.getCanvas().style.cursor = '';
+								});
+
+
                 // Add checkbox and label elements for the layer.
                 var input = document.createElement('input');
                 input.type = 'checkbox';
@@ -286,7 +304,6 @@
         });
     });
 
-
 // TK using code from https://docs.mapbox.com/help/tutorials/add-points-pt-3/ placeholder JSON I created
 			map.on('click', function(e) {
 				// TK var pops identifies the marker pointed to
@@ -302,13 +319,12 @@ var pops = pops[0];
 
 // TK offset popup so it doesn't cover the marker
 
-var popup = new mapboxgl.Popup({ offset: [0, -30] })
+var popup = new mapboxgl.Popup({ offset: [0, -20] })
 	 .setLngLat(pops.geometry.coordinates)
 	 // TK currently displays name of article and link to full article
-	 .setHTML('<h4>' + pops.properties.name + '</h4><p><a href="' + pops.properties.url + '">read the full story</a></p>')
+	 .setHTML('<h5>' + pops.properties.name + '</h5><p><a href="' + pops.properties.url + '">read the full story</a></p>')
 	 .addTo(map);
 });
-
 </script>
 
 </body>
