@@ -186,7 +186,7 @@ p {
 /* TK begin styling map frame and controls */
 /* TK mapbox seems unable to inherit sizes from containing id/class, cannot use percentage unless making it fullscreen with absolute top0 left0 100% 100%*/
 #map{
-  width: 30vw;
+  width: 40vw;
   height: 50vh;
 }
 
