@@ -259,4 +259,8 @@ p {
     width: 75%;
     max-width: 60rem;
   }
+	 #map{
+    width: 30vw;
+    height: 20vh;
+  }
 }
