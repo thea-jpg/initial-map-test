@@ -16,6 +16,7 @@ body {
   left: 0;
   top: 0;
   font-size: 100%;
+    z-index:2;
 }
 
 /* ROOT FONT STYLES */
@@ -186,8 +187,78 @@ p {
 /* TK mapbox seems unable to inherit sizes from containing id/class, cannot use percentage unless making it fullscreen with absolute top0 left0 100% 100%*/
 #map{
   width: 30vw;
-  height: 20vh;
+  height: 50vh;
 }
+
+/* TKpopup styling */
+.mapboxgl-popup-content {
+  background-color: #cccee1;
+  color:#2e106a;
+max-height:200px;
+  margin: 0;
+  padding:15px;
+}
+.mapboxgl-popup-tip {
+  border-top-color:#cccee1;
+  border-bottom-color:#cccee1;
+}
+#map h5{
+  padding:0;
+  margin:0;
+}
+#map p{ padding:0;
+  margin: 0;
+}
+/* TK code temporarily copied from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/ to test inclusion of this element*/
+/* TK colours, text, and position changed but basically nothing else rn */
+.filter-group {
+font: 12px/20px "Lato", Helvetica, sans-serif;
+font-weight: 600;
+position: absolute;
+z-index: 10;
+border-radius: 3px;
+width: 120px;
+color: #fff;
+}
+
+.filter-group input[type='checkbox']:first-child + label {
+border-radius: 3px 3px 0 0;
+}
+
+.filter-group label:last-child {
+border-radius: 0 0 3px 3px;
+border: none;
+}
+
+.filter-group input[type='checkbox'] {
+display: none;
+}
+
+.filter-group input[type='checkbox'] + label {
+background-color: #aeb0bf;
+display: block;
+cursor: pointer;
+padding: 10px;
+border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.filter-group input[type='checkbox'] + label {
+background-color: #aeb0bf;
+text-transform: capitalize;
+}
+
+.filter-group input[type='checkbox'] + label:hover,
+.filter-group input[type='checkbox']:checked + label {
+background-color: #cccee1;
+}
+
+.filter-group input[type='checkbox']:checked + label:before {
+  /* TK bird icon for now */
+content: '🐦';
+margin-right: 5px;
+}
+
+/*end of filter group copied code*/
 
 @media only screen and (min-width: 33.75em) {  /* 540px */
   .container {
@@ -255,5 +326,4 @@ p {
     width: 75%;
     max-width: 60rem;
   }
-
 }
