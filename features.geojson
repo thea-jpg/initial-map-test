@@ -1,0 +1,172 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "tags": "funny",
+        "name": "Oar-Some Osprey",
+        "location": "Opera Bar",
+        "excerpt": "Lorem Ipsum",
+        "storyFullText": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "url": "https://urbanfieldnaturalist.org/stories/oar-some-osprey",
+        "date": "01-01-2020",
+        "storyAuthor": "Lorem Ipsum",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          151.213852,
+          -33.858318
+        ],
+        "type": "Point"
+      },
+      "id": "0564d9a1918093e567afb4fb7856745d"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "Sometimes Nature Comes to You",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/sometimes-nature-comes-to-you",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Ivanhoe, Victoria, Australia",
+        "tags": "curious",
+        "wikidata": "Q3156237",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          145.0457,
+          -37.7703
+        ],
+        "type": "Point"
+      },
+      "id": "locality.14898022940438750"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "From Telephoto to Macro, the Big Side of a Small World",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/telephoto-to-macro",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Cammeray, New South Wales, Australia",
+        "tags": "funny",
+        "wikidata": "Q5026863",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          151.22,
+          -33.8231
+        ],
+        "type": "Point"
+      },
+      "id": "locality.1832825270203500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "Not Really Friends",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/not-really-friends",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Fitzroy, Victoria, Australia",
+        "tags": "funny",
+        "wikidata": "Q1421389",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          144.979,
+          -37.8011
+        ],
+        "type": "Point"
+      },
+      "id": "locality.3311283460220480"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "Welcoming a Change",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/welcoming-a-change",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Rozelle, New South Wales, Australia",
+        "tags": "joyful",
+        "wikidata": "Q6270986",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          151.167,
+          -33.8649
+        ],
+        "type": "Point"
+      },
+      "id": "locality.5966651846933350"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "A Stunning Aussie Bee",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/a-stunning-aussie-bee",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Drummoyne, New South Wales, Australia",
+        "tags": "curious",
+        "wikidata": "Q5309255",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          151.154,
+          -33.8535
+        ],
+        "type": "Point"
+      },
+      "id": "locality.8869668159147530"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "storyAuthor": "Lorem Ipsum",
+        "excerpt": "Lorem Ipsum",
+        "coverImage": "Lorem Ipsum",
+        "name": "Scrumptious Scats, Seriously",
+        "date": "01-01-2020",
+        "url": "https://urbanfieldnaturalist.org/stories/scrumptious-scats",
+        "storyFullText": "Lorem Ipsum",
+        "location": "Blue Mountains, New South Wales, Australia",
+        "tags": "curious",
+        "wikidata": "Q667529",
+        "authorBio": "Lorem Ipsum"
+      },
+      "geometry": {
+        "coordinates": [
+          150.38,
+          -33.71
+        ],
+        "type": "Point"
+      },
+      "id": "place.2697685586399870"
+    }
+  ],
+  "type": "FeatureCollection"
+}
