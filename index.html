@@ -307,7 +307,7 @@
 			map.on('click', function(e) {
 				// TK var pops identifies the marker pointed to
 var pops = map.queryRenderedFeatures(e.point, {
-	layers: ['dataset-ufnp-test'] // TK dataset layer name
+	data:'places' // TK dataset layer name
 });
 
 if (!pops.length) {
