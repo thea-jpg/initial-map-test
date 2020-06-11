@@ -1,87 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>UFNP Initial Test</title>
+	<title>UFN iframe content</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="UNFP Map tests">
-<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico"/>
+<meta name="description" content="map iframe content">
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
-<style>
-	body { margin: 0; padding: 0; }
-	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
-  /* TKpopup styling */
-  .mapboxgl-popup-content {
-    background-color: #cccee1;
-    color:#2e106a;
-  max-height:200px;
-    margin: 0;
-    padding:15px;
-  }
-  .mapboxgl-popup-tip {
-    border-top-color:#cccee1;
-    border-bottom-color:#cccee1;
-  }
-  #map h5{
-    padding:0;
-    margin:0;
-  }
-  #map p{ padding:0;
-    margin: 0;
-  }
-  /* TK code temporarily copied from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/ to test inclusion of this element*/
-  /* TK colours, text, and position changed but basically nothing else rn */
-  .filter-group {
-  font: 12px/20px "Lato", Helvetica, sans-serif;
-  font-weight: 600;
-  position: absolute;
-  z-index: 10;
-  border-radius: 3px;
-  width: 120px;
-  color: #fff;
-  }
-
-  .filter-group input[type='checkbox']:first-child + label {
-  border-radius: 3px 3px 0 0;
-  }
-
-  .filter-group label:last-child {
-  border-radius: 0 0 3px 3px;
-  border: none;
-  }
-
-  .filter-group input[type='checkbox'] {
-  display: none;
-  }
-
-  .filter-group input[type='checkbox'] + label {
-  background-color: #aeb0bf;
-  display: block;
-  cursor: pointer;
-  padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-  }
-
-  .filter-group input[type='checkbox'] + label {
-  background-color: #aeb0bf;
-  text-transform: capitalize;
-  }
-
-  .filter-group input[type='checkbox'] + label:hover,
-  .filter-group input[type='checkbox']:checked + label {
-  background-color: #cccee1;
-  }
-
-  .filter-group input[type='checkbox']:checked + label:before {
-    /* TK bird icon for now */
-  content: '🐦';
-  margin-right: 5px;
-  }
-
-  /*end of filter group copied code*/
-</style>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
+<link href="simple-grid.css" rel="stylesheet" >
 </head>
 <body>
 				<!-- TK draws the map-->
@@ -283,9 +209,7 @@
 		zoom:12
   });
 
-	//TK add fullscreen controls from https://docs.mapbox.com/mapbox-gl-js/example/fullscreen/
-	// TK ideally would be able to control this to be large but not fullscreen, need to break column/margin assigned to col-6
-	map.addControl(new mapboxgl.FullscreenControl());
+
 	// TK add navigation control
 	var nav = new mapboxgl.NavigationControl();
 	map.addControl(nav);
@@ -314,26 +238,11 @@
                         'icon-allow-overlap': true
                     },
                     'filter': ['==', 'tags', symbol]
-                });
+										// TK final 'filter' line groups the tags, so that we filter by group not individual appearance of stages
+// TK making sub-groups for tags will go here
+									                });
 
-								// TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
-								// TK use to focus and change zoom
-								// Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-								map.on('click', layerID, function(e) {
-								map.flyTo({ center: e.features[0].geometry.coordinates });
-								});
-
-								// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-								map.on('mouseenter', layerID, function() {
-								map.getCanvas().style.cursor = 'pointer';
-								});
-
-								// Change it back to a pointer when it leaves.
-								map.on('mouseleave', layerID, function() {
-								map.getCanvas().style.cursor = '';
-								});
-
-
+// TK code below creates checkboxes for filter nav
                 // Add checkbox and label elements for the layer.
                 var input = document.createElement('input');
                 input.type = 'checkbox';
@@ -354,6 +263,24 @@
                         e.target.checked ? 'visible' : 'none'
                     );
                 });
+
+																// TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
+																// TK use to focus and change zoom
+																// Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
+																map.on('click', layerID, function(e) {
+																map.flyTo({ center: e.features[0].geometry.coordinates });
+																});
+
+																// Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+																map.on('mouseenter', layerID, function() {
+																map.getCanvas().style.cursor = 'pointer';
+																});
+
+																// Change it back to a pointer when it leaves.
+																map.on('mouseleave', layerID, function() {
+																map.getCanvas().style.cursor = '';
+																});
+
             }
         });
     });
@@ -362,7 +289,7 @@
 			map.on('click', function(e) {
 				// TK var pops identifies the marker pointed to
 var pops = map.queryRenderedFeatures(e.point, {
-	layers: ['dataset-ufnp-test'] // TK dataset layer name
+	data:'places' // popups and filtering both draw from same geojson data
 });
 
 if (!pops.length) {
