@@ -1,4 +1,5 @@
-{
+{"type": "FeatureCollection",
+
   "features": [
     {
       "type": "Feature",
@@ -167,6 +168,6 @@
       },
       "id": "place.2697685586399870"
     }
-  ],
-  "type": "FeatureCollection"
+
+  ]
 }
