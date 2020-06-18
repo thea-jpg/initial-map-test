@@ -571,7 +571,7 @@
 			-169.6200000000000045474735088646411895751953125,
 			44.590000000000003410605131648480892181396484375
 		],
-		zoom:10
+		zoom:5
   });
 
 
@@ -587,21 +587,41 @@
             'data': places
         });
 
+
         places.features.forEach(function(feature) {
             var symbol = feature.properties['tags'];
             var layerID = 'poi-' + symbol;
 
             // Add a layer for this symbol type if it hasn't been added already.
-            if (!map.getLayer(layerID)) {
+						if (!map.getLayer(layerID)) {
                 map.addLayer({
                     'id': layerID,
-                    'type': 'symbol',
+                      'type': 'circle',
                     'source': 'places',
-                    'layout': {
-                        'icon-image': 'dot-11',
-                        'icon-size':6,
-                        'icon-allow-overlap': true
-                    },
+										'paint': {
+// make circles larger as the user zooms from z3 to z12 to z22
+'circle-radius': {
+'base': 6,
+'stops': [
+	[8, 14],
+[22, 180]
+]
+},
+// TK set circle opacity
+'circle-opacity':0.6,
+// TK match colour expression to ttags using https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+'circle-color': [
+'match',
+['get', 'tags'],
+'a',
+'#18151f',
+'insect',
+'#373047',
+'bird',
+'#60547d',
+/* other */ '#ccc'
+]
+},
                     'filter': ['==', 'tags', symbol]
 										// TK final 'filter' line groups the tags, so that we filter by group not individual appearance of stages
 // TK making sub-groups for tags will go here
