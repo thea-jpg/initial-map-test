@@ -59,6 +59,13 @@ p {
   line-height: 1.8;
 }
 
+.popupText h4,h6,p{
+  padding-top: 5px;
+  padding-bottom:5px;
+  margin-top: 0;
+  margin-bottom:0;
+  line-height: 1.2;
+}
 .font-light {
   font-weight: 300;
 }
@@ -254,7 +261,7 @@ margin-right: 5px;
 .mapboxgl-popup-content {
   background-color: #cccee1;
   color:#2e106a;
-max-height:150px;
+max-height:250px;
   margin: 0;
   padding:15px;
 }
