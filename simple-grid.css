@@ -66,6 +66,10 @@ p {
   margin-bottom:0;
   line-height: 1.2;
 }
+#map h4,h6,p{
+  margin-top: 0;
+  margin-bottom:0
+}
 .popupText p{
   font-size: .8rem;
 }
