@@ -58,7 +58,7 @@ p {
   font-weight: 200;
   line-height: 1.8;
 }
-
+/*tk styling of text in the popup */
 .popupText h4,h6,p{
   padding-top: 5px;
   padding-bottom:5px;
@@ -66,6 +66,10 @@ p {
   margin-bottom:0;
   line-height: 1.2;
 }
+.popupText p{
+  font-size: .8rem;
+}
+/*tk end of popup text styling */
 .font-light {
   font-weight: 300;
 }
@@ -268,13 +272,6 @@ max-height:250px;
 .mapboxgl-popup-tip {
   border-top-color:#cccee1;
   border-bottom-color:#cccee1;
-}
-#map h5{
-  padding:0;
-  margin:0;
-}
-#map p{ padding:0;
-  margin: 0;
 }
 
 @media only screen and (min-width: 33.75em) {  /* 540px */
