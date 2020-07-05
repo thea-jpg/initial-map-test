@@ -27,7 +27,7 @@
 <body>
 				<!-- TK draws the map-->
 				<div id="map">
-<button class="filter-button">Genre+Tag</button>
+<button class="filter-button">Just Tag</button>
 <div class="menu-content">
 <div id="filter-genre" class="filter-group"></div>
 </div>
@@ -638,7 +638,7 @@ map.on('load', function () {
  places.features.forEach(function (feature) {
 	 var tag = feature.properties.tag;
 	 var genre = feature.properties.genre;
-	 var symbol = tag + '-' + genre;
+	 var symbol = tag;
 	 var layerID = 'poi-' + symbol;
    // console.log("checking id " + symbol)
 	 // Add a layer for this symbol type if it hasn't been added already.
@@ -673,7 +673,7 @@ map.on('load', function () {
 					 '#ccc'
 				 ]
 			 },
-			 'filter': ["all",["==", "tag",tag],["==","genre",genre]]
+			 'filter': ["==", "tag",tag]
 			 // TK final 'filter' line groups the tags, so that we filter by group not individual appearance of stages
 			 // TK making sub-groups for tags will go here
 		 });
