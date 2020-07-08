@@ -8,34 +8,12 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
 <link href="simple-grid.css" rel="stylesheet" >
-<style>
-#map {
-   display: inline-block;
-}
-.menu-content {
-   display: none;
-   position: absolute;
-   background-color: #017575;
-   min-width: 160px;
-   z-index: 1;
-}
-.dropdown-menu:hover .menu-btn {
-   background-color: #3e8e41;
-}
-</style>
 </head>
 <body>
 				<!-- TK draws the map-->
 				<div id="map">
-<button class="filter-button">Just Tag</button>
-<div class="menu-content">
-<div id="filter-genre" class="filter-group"></div>
-</div>
 
-<!-- <button class="filter-button">tag</button>
-<div class="menu-content">
-<div id="filter-group" class="filter-group"></div>
-</div> -->
+<div id="filter-genre" class="filter-group"></div>
 </div>
 
 <script>
@@ -632,14 +610,21 @@ map.on('load', function () {
 	 'data': places
  });
 
-/*
- * For every place,
- */
+// TK for each feature in places, add a layer, separated by tag/genre
  places.features.forEach(function (feature) {
 	 var tag = feature.properties.tag;
 	 var genre = feature.properties.genre;
 	 var symbol = tag;
-	 var layerID = 'poi-' + symbol;
+ var layerID = 'poi-' + symbol;
+// 	 document.getElementById("genre-button").addEventListener("click", function(){
+// 	let symbol = feature.properties['genre'];
+// 	 var layerID = 'poi-' + symbol;
+// });
+// document.getElementById("tag-button").addEventListener("click", function(){
+// let symbol = feature.properties['tag'];
+//  var layerID = 'poi-' + symbol;
+// });
+
    // console.log("checking id " + symbol)
 	 // Add a layer for this symbol type if it hasn't been added already.
 	 if (!map.getLayer(layerID)) {
@@ -673,54 +658,54 @@ map.on('load', function () {
 					 '#ccc'
 				 ]
 			 },
-			 'filter': ["==", "tag",tag]
+			 'filter': ["any",["==", "tag", symbol],["==","genre",genre]]
 			 // TK final 'filter' line groups the tags, so that we filter by group not individual appearance of stages
 			 // TK making sub-groups for tags will go here
 		 });
 
-		 // TK code below creates checkboxes for filter nav
-		 // Add checkbox and label elements for the layer.
-		 var input = document.createElement('input');
-		 input.type = 'checkbox';
-		 input.id = layerID;
-		 input.checked = true;
-		 genreFilter.appendChild(input);
+		 		 // TK code below creates checkboxes for filter nav
+		 		 // Add checkbox and label elements for the layer.
+		 		 var input = document.createElement('input');
+		 		 input.type = 'checkbox';
+		 		 input.id = layerID;
+		 		 input.checked = true;
+		 		 genreFilter.appendChild(input);
 
-		 var label = document.createElement('label');
-		 label.setAttribute('for', layerID);
-		 label.textContent = symbol;
-		 genreFilter.appendChild(label);
+		 		 var label = document.createElement('label');
+		 		 label.setAttribute('for', layerID);
+		 		 label.textContent = symbol;
+		 		 genreFilter.appendChild(label);
 
-		 // When the checkbox changes, update the visibility of the layer.
-		 input.addEventListener('change', function (e) {
-			 map.setLayoutProperty(
-				 layerID,
-				 'visibility',
-				 e.target.checked ? 'visible' : 'none'
-			 );
-		 });
+		 		 // When the checkbox changes, update the visibility of the layer.
+		 		 input.addEventListener('change', function (e) {
+		 			 map.setLayoutProperty(
+		 				 layerID,
+		 				 'visibility',
+		 				 e.target.checked ? 'visible' : 'none'
+		 			 );
+		 		 });
 
-		 // TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
-		 // TK use to focus and change zoom
-		 // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-		 map.on('click', layerID, function (e) {
-			 // set zoom to fly-in
-			 map.flyTo({
-				 center: e.features[0].geometry.coordinates,
-				 zoom: 4
-			 });
+		 		 // TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
+		 		 // TK use to focus and change zoom
+		 		 // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
+		 		 map.on('click', layerID, function (e) {
+		 			 // set zoom to fly-in
+		 			 map.flyTo({
+		 				 center: e.features[0].geometry.coordinates,
+		 				 zoom: 4
+		 			 });
 
-		 });
+		 		 });
 
-		 // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-		 map.on('mouseenter', layerID, function () {
-			 map.getCanvas().style.cursor = 'pointer';
-		 });
+		 		 // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
+		 		 map.on('mouseenter', layerID, function () {
+		 			 map.getCanvas().style.cursor = 'pointer';
+		 		 });
 
-		 // Change it back to a pointer when it leaves.
-		 map.on('mouseleave', layerID, function () {
-			 map.getCanvas().style.cursor = '';
-		 });
+		 		 // Change it back to a pointer when it leaves.
+		 		 map.on('mouseleave', layerID, function () {
+		 			 map.getCanvas().style.cursor = '';
+		 		 });
 
 	 }
  });
@@ -750,17 +735,13 @@ map.on('click', function (e) {
 	 .addTo(map);
 });
 
-// dropdown menu
-
-let dropdownBtn = document.querySelector('.filter-button');
-let menuContent = document.querySelector('.menu-content');
-dropdownBtn.addEventListener('click', () => {
-	 if (menuContent.style.display === "") {
-		 menuContent.style.display = "block";
-	 } else {
-		 menuContent.style.display = "";
-	 }
- })
+//non-working, ignore TK
+//  document.getElementById('tag-button').onclick = function changeContent() {
+// 	 let symbol = tag;
+// };
+// document.getElementById('genre-button').onclick = function changeContent() {
+// 	 let symbol = genre;
+// };
 
 </script>
 
