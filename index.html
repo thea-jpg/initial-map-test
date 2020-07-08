@@ -39,12 +39,12 @@
 	<div class='row' id='filterTags'>
     <input id='all' type='radio' name='toggle' value='all' checked='checked'>
     <label for='all'>All</label>
-    <input id='fiction' type='radio' name='toggle' value='fiction'>
-    <label for='fiction'>fiction</label>
-    <input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
-    <label for='non-fiction'>non-fiction</label>
-		<input id='poetry' type='radio' name='toggle' value='poetry'>
-    <label for='poetry'>poetry</label>
+    <input id='nature' type='radio' name='toggle' value='nature'>
+    <label for='nature'>nature</label>
+    <input id='bird' type='radio' name='toggle' value='bird'>
+    <label for='bird'>bird</label>
+		<input id='insect' type='radio' name='toggle' value='insect'>
+    <label for='insect'>insect</label>
   </div>
 </div>
 </div>
@@ -707,13 +707,13 @@ document.getElementById('filterTags').addEventListener('change', function(e) {
 var day = e.target.value;
 // update the map filter
 if (day === 'all') {
-filterDay = ['!=', ['string', ['get', 'genre']], 'placeholder'];
-} else if (day === 'fiction') {
+filterDay = ['!=', ['string', ['get', 'tag']], 'placeholder'];
+} else if (day === 'nature') {
 filterDay = ["==",["get","tag"],"nature"];
-} else if (day === 'non-fiction') {
-filterDay = ["==",["get","genre"],"bird"];
-} else if (day === 'poetry') {
-filterDay = ["==",["get","genre"],"insect"];
+} else if (day === 'bird') {
+filterDay = ["==",["get","tag"],"bird"];
+} else if (day === 'insect') {
+filterDay = ["==",["get","tag"],"insect"];
 } else {
 console.log('error');
 }
