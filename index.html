@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<title>UFN iframe content</title>
@@ -636,6 +636,9 @@ map.addControl(nav);
 
 // TK actual filtering of variables begins here
 map.on('load', function () {
+	// TK genreid and tag do nto equal palceholder
+	var genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
+	var tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
  // Add a GeoJSON source containing place coordinates and information.
  map.addSource('places', {
 	 'type': 'geojson',
@@ -643,11 +646,7 @@ map.on('load', function () {
  });
 
 // TK for each feature in places, add a layer, separated by tag/genre
- places.features.forEach(function (feature) {
-	 var tag = feature.properties.tag;
-	 var genre = feature.properties.genre;
-	 var symbol = tag;
- var layerID = 'poi-' + symbol;
+
    // console.log("checking id " + symbol)
 	 // Add a layer for this symbol type if it hasn't been added already.
 		 map.addLayer({
@@ -679,73 +678,55 @@ map.on('load', function () {
 					 '#ccc'
 				 ]
 			 },
-
-			 // TK final 'filter' line groups the tags, so that we filter by group not individual appearance of stages
-			 // TK making sub-groups for tags will go here
+'filter': ['all', genreID, tagID]
+			 // thsi filter line groups the resulst from teh following if else statements so that the layers are not duplicated
 		 });
 
 		 // TOGGLE genre TK
 		 document.getElementById('filterGenre').addEventListener('change', function(e) {
+// TK check id of clicked target
   var genreSelect= e.target.value;
   // update the map filter
   if (genreSelect=== 'all') {
     genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
-  } else if (genreSelect=== 'fiction') {
+  } else if (genreSelect === 'fiction') {
     genreID = ["==",["get","genre"],"fiction"];
-  } else if (genreSelect=== 'non-fiction') {
+  } else if (genreSelect === 'non-fiction') {
     genreID = ["==",["get","genre"],"non-fiction"];
-  } else if (genreSelect=== 'poetry') {
+  } else if (genreSelect === 'poetry') {
     genreID = ["==",["get","genre"],"poetry"];
   } else {
     console.log('error');
   }
-  map.setFilter('stories', ['all', genreID]);
+  map.setFilter('stories', ['all', genreID, tagID]);
 });
-
+// TK series of if else statements evaluate genre selected with genre on layers
 // TOGGLE TAGS TK
 document.getElementById('filterTags').addEventListener('change', function(e) {
-var day = e.target.value;
+var tagSelect = e.target.value;
 // update the map filter
-if (day === 'all') {
-filterDay = ['!=', ['string', ['get', 'tag']], 'placeholder'];
-} else if (day === 'nature') {
-filterDay = ["==",["get","tag"],"nature"];
-} else if (day === 'bird') {
-filterDay = ["==",["get","tag"],"bird"];
-} else if (day === 'insect') {
-filterDay = ["==",["get","tag"],"insect"];
+if (tagSelect === 'all') {
+tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
+} else if (tagSelect === 'nature') {
+tagID = ["==",["get","tag"],"nature"];
+} else if (tagSelect === 'bird') {
+tagID = ["==",["get","tag"],"bird"];
+} else if (tagSelect === 'insect') {
+tagID = ["==",["get","tag"],"insect"];
 } else {
 console.log('error');
 }
-map.setFilter('stories', ['all', filterDay]);
+// filter for map is made by showing any results that have both the selected genre and the selected tag
+map.setFilter('stories', ['all', genreID, tagID]);
 });
 
-		 		 // TK code below creates checkboxes for filter nav
-		 		 // Add checkbox and label elements for the layer.
-		 		 // var input = document.createElement('input');
-		 		 // input.type = 'radio';
-		 		 // input.id = layerID;
-		 		 // input.checked = true;
-		 		 // genreFilter.appendChild(input);
-				 //
-		 		 // var label = document.createElement('label');
-		 		 // label.setAttribute('for', layerID);
-		 		 // label.textContent = symbol;
-		 		 // genreFilter.appendChild(label);
 
-		 		 // When the checkbox changes, update the visibility of the layer.
-		 		 // input.addEventListener('change', function (e) {
-		 			//  map.setLayoutProperty(
-		 			// 	 layerID,
-		 			// 	 'visibility',
-		 			// 	 e.target.checked ? 'visible' : 'none'
-		 			//  );
-		 		 // });
 
 		 		 // TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
 		 		 // TK use to focus and change zoom
 		 		 // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-		 		 map.on('click', layerID, function (e) {
+
+		 		 map.on('click', 'stories', function (e) {
 		 			 // set zoom to fly-in
 		 			 map.flyTo({
 		 				 center: e.features[0].geometry.coordinates,
@@ -755,17 +736,16 @@ map.setFilter('stories', ['all', filterDay]);
 		 		 });
 
 		 		 // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
-		 		 map.on('mouseenter', layerID, function () {
+		 		 map.on('mouseenter', 'stories', function () {
 		 			 map.getCanvas().style.cursor = 'pointer';
 		 		 });
 
 		 		 // Change it back to a pointer when it leaves.
-		 		 map.on('mouseleave', layerID, function () {
+		 		 map.on('mouseleave', 'stories', function () {
 		 			 map.getCanvas().style.cursor = '';
 		 		 });
 
-	 })
- });
+	 });
 
 // TK using code from https://docs.mapbox.com/help/tutorials/add-points-pt-3/ placeholder JSON I created
 map.on('click', function (e) {
@@ -790,14 +770,6 @@ map.on('click', function (e) {
 	 .setHTML('<div class="popupText"><h4>' + pops.properties.name + '</h4><h6>' + pops.properties.excerpt + '</h6><p><a href="' + pops.properties.url + '" target="_blank">read the full story</a></p></div>')
 	 .addTo(map);
 });
-
-//non-working, ignore TK
-//  document.getElementById('tag-button').onclick = function changeContent() {
-// 	 let symbol = tag;
-// };
-// document.getElementById('genre-button').onclick = function changeContent() {
-// 	 let symbol = genre;
-// };
 
 </script>
 
