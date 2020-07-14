@@ -636,7 +636,7 @@ map.addControl(nav);
 
 // TK actual filtering of variables begins here
 map.on('load', function () {
-	// TK genreid and tag do nto equal palceholder
+	// TK genreid and tagid do not equal placeholder
 	var genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
 	var tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
  // Add a GeoJSON source containing place coordinates and information.
@@ -678,15 +678,16 @@ map.on('load', function () {
 					 '#ccc'
 				 ]
 			 },
+			 // TK below mapbox filter specifies that the data displayed is all data encompassed by genreID and tagID
 'filter': ['all', genreID, tagID]
-			 // thsi filter line groups the resulst from teh following if else statements so that the layers are not duplicated
 		 });
 
 		 // TOGGLE genre TK
+		 // radio toggle principles here are from https://docs.mapbox.com/help/tutorials/show-changes-over-time/
 		 document.getElementById('filterGenre').addEventListener('change', function(e) {
 // TK check id of clicked target
   var genreSelect= e.target.value;
-  // update the map filter
+  // TK update the map filter by referencing the selected target against the JSON in places
   if (genreSelect=== 'all') {
     genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
   } else if (genreSelect === 'fiction') {
@@ -698,13 +699,11 @@ map.on('load', function () {
   } else {
     console.log('error');
   }
+	// TK narrow what appaears through the filter by changing what genreID encompasses, and then only showing the data that is included in the combination of a narrower genreID and the selected tagID
   map.setFilter('stories', ['all', genreID, tagID]);
 });
-// TK series of if else statements evaluate genre selected with genre on layers
-// TOGGLE TAGS TK
 document.getElementById('filterTags').addEventListener('change', function(e) {
 var tagSelect = e.target.value;
-// update the map filter
 if (tagSelect === 'all') {
 tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
 } else if (tagSelect === 'nature') {
@@ -716,7 +715,7 @@ tagID = ["==",["get","tag"],"insect"];
 } else {
 console.log('error');
 }
-// filter for map is made by showing any results that have both the selected genre and the selected tag
+// TK same as above but now changing the value of tagID
 map.setFilter('stories', ['all', genreID, tagID]);
 });
 
