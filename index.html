@@ -8,45 +8,65 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
 <link href="simple-grid.css" rel="stylesheet">
-<style>
-#console {
-  position: absolute;
-  width: 240px;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: white;
-}
-</style>
 </head>
 <body>
 				<!-- TK draws the map-->
 				<div id="map"></div>
 <div id="console">
-<!-- <div id="filter-genre" class="filter-group"></div> -->
-<div class='session'>
 	<h2>select genre</h2>
-  <div class='row' id='filterGenre'>
-    <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-    <label for='all'>All</label>
-    <input id='fiction' type='radio' name='toggle' value='fiction'>
-    <label for='fiction'>fiction</label>
-    <input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
-    <label for='non-fiction'>non-fiction</label>
-		<input id='poetry' type='radio' name='toggle' value='poetry'>
-    <label for='poetry'>poetry</label>
-  </div>
+  <ul class='filter-group' id='filterGenre'>
+	<li>
+    <label>
+      <input id='all' type='radio' name='toggle' value='all' checked='checked'>
+      All
+    </label>
+  </li>
+  <li>
+    <label>
+      <input id='fiction' type='radio' name='toggle' value='fiction'>
+      fiction
+    </label>
+  </li>
+  <li>
+    <label>
+      <input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
+      non-fiction
+    </label>
+  </li>
+  <li>
+    <label>
+      <input id='poetry' type='radio' name='toggle' value='poetry'>
+      poetry
+    </label>
+  </li>
+  </ul>
 	<h2>select tags</h2>
-	<div class='row' id='filterTags'>
-    <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-    <label for='all'>All</label>
-    <input id='nature' type='radio' name='toggle' value='nature'>
-    <label for='nature'>nature</label>
-    <input id='bird' type='radio' name='toggle' value='bird'>
-    <label for='bird'>bird</label>
-		<input id='insect' type='radio' name='toggle' value='insect'>
-    <label for='insect'>insect</label>
-  </div>
-</div>
+	<ul class='filter-group' id='filterTags'>
+    <li>
+      <label>
+        <input id='all' type='radio' name='toggle' value='all' checked='checked'>
+        All
+      </label>
+    </li>
+    <li>
+      <label>
+        <input id='nature' type='radio' name='toggle' value='nature'>
+        nature
+      </label>
+    </li>
+    <li>
+      <label>
+        <input id='bird' type='radio' name='toggle' value='bird'>
+        bird
+      </label>
+    </li>
+    <li>
+      <label>
+        <input id='insect' type='radio' name='toggle' value='insect'>
+        insect
+      </label>
+    </li>
+  </ul>
 </div>
 <script>
  mapboxgl.accessToken = "pk.eyJ1IjoidXJiYW4tZmllbGQtbmF0dXJhbGlzdCIsImEiOiJja2JsaDFxdGcxOTFmMnNvZG1sZWEydjJjIn0.gMgdHKd1MGd8y7GU-XX3pA";

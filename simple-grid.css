@@ -208,59 +208,31 @@ p {
   height:100%;
 }
 
-/* TK code temporarily copied from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/ to test inclusion of this element*/
-/* TK colours, text, and position changed but basically nothing else rn */
-.filter-group {
-font: 12px/20px "Lato", Helvetica, sans-serif;
-font-weight: 600;
-position: absolute;
-z-index: 10;
-border-radius: 3px;
-max-width: 120px;
-color: #fff;
-opacity:.7;
-
+#console {
+  position: absolute;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: white;
 }
 
-.filter-group input[type='checkbox']:first-child + label {
-border-radius: 3px 3px 0 0;
+#console ul{
+list-style: none;
+background-color: inherit;
 }
-
-.filter-group label:last-child {
-border-radius: 0 0 3px 3px;
-border: none;
-}
-
-.filter-group input[type='checkbox'] {
-display: none;
-}
-
-.filter-group input[type='checkbox'] + label {
-background-color: #aeb0bf;
-display: block;
-cursor: pointer;
-padding: 10px;
-border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-}
-
-.filter-group input[type='checkbox'] + label {
-background-color: #aeb0bf;
-text-transform: capitalize;
-}
-
-.filter-group input[type='checkbox'] + label:hover,
-.filter-group input[type='checkbox']:checked + label {
-background-color: #cccee1;
-}
-
-.filter-group input[type='checkbox']:checked + label:before {
-  /* TK bird icon for now */
-content: '🐦';
-margin-right: 5px;
-}
-
-/* TK end of copied filter code */
-
+#console ul li{
+        display: inline-block;
+        position: relative;
+    }
+  #console ul li label{
+        display: block;
+        padding: 8px 25px;
+        color: #333;
+        text-decoration: none;
+    }
+  #console  ul li label:hover{
+        color: #fff;
+        background: #939393;
+    }
 /* TKpopup styling */
 .mapboxgl-popup-content {
   background-color: #cccee1;
