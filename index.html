@@ -13,12 +13,14 @@
 				<!-- TK draws the map-->
 				<div id="map"></div>
 <div id="console">
-	<h2>select genre</h2>
+  <div class="dropdown">
+    <ul>
+<li><h2 id="genreTitle">fuck</h2>
   <ul class='filter-group' id='filterGenre'>
 	<li>
     <label>
       <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-      All
+      all
     </label>
   </li>
   <li>
@@ -40,12 +42,14 @@
     </label>
   </li>
   </ul>
-	<h2>select tags</h2>
+</li>
+<li>
+	<h2 id="tagTitle"></h2>
 	<ul class='filter-group' id='filterTags'>
     <li>
       <label>
         <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-        All
+        all
       </label>
     </li>
     <li>
@@ -67,12 +71,19 @@
       </label>
     </li>
   </ul>
+</li>
+  </ul>
+</div>
 </div>
 <script>
  mapboxgl.accessToken = "pk.eyJ1IjoidXJiYW4tZmllbGQtbmF0dXJhbGlzdCIsImEiOiJja2JsaDFxdGcxOTFmMnNvZG1sZWEydjJjIn0.gMgdHKd1MGd8y7GU-XX3pA";
  // TK filtering by tag below is majority from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/
  // TK ideally be able to pull this from the data is the map style being referenced, so as to make uploading changing data easier
-     var places =
+var genreTitle = document.getElementById("genreTitle");
+genreTitle.textContent = "Select Genre";
+var tagTitle = document.getElementById("tagTitle");
+tagTitle.textContent= "Select Tag";
+    var places =
  // TK geojson created w/in the dataset studio of mapbox, using placeholder values for the moment, exported as geojson file
  // TK	   variable 'tags' replaced by 'icons' for the moment, will be returned soon
  {
@@ -656,6 +667,7 @@ map.addControl(nav);
 
 // TK actual filtering of variables begins here
 map.on('load', function () {
+
 	// TK genreid and tagid do not equal placeholder
 	var genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
 	var tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
@@ -707,14 +719,22 @@ map.on('load', function () {
 		 document.getElementById('filterGenre').addEventListener('change', function(e) {
 // TK check id of clicked target
   var genreSelect= e.target.value;
+      genreTitle.style.backgroundColor="#cccee1";
+      genreTitle.style.color="white";
   // TK update the map filter by referencing the selected target against the JSON in places
   if (genreSelect=== 'all') {
+    genreTitle.textContent="All Genres";
+    genreTitle.style.backgroundColor="white";
+    genreTitle.style.color="#2e106a";
     genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
   } else if (genreSelect === 'fiction') {
+    document.getElementById("genreTitle").textContent="Fiction";
     genreID = ["==",["get","genre"],"fiction"];
   } else if (genreSelect === 'non-fiction') {
+      document.getElementById("genreTitle").textContent="Non-Fiction";
     genreID = ["==",["get","genre"],"non-fiction"];
   } else if (genreSelect === 'poetry') {
+      document.getElementById("genreTitle").textContent="Poetry";
     genreID = ["==",["get","genre"],"poetry"];
   } else {
     console.log('error');
@@ -724,13 +744,22 @@ map.on('load', function () {
 });
 document.getElementById('filterTags').addEventListener('change', function(e) {
 var tagSelect = e.target.value;
+    tagTitle.style.backgroundColor="#cccee1";
+    tagTitle.style.color="white";
 if (tagSelect === 'all') {
+      tagTitle.textContent="All Tags";
+      tagTitle.style.backgroundColor="white";
+      tagTitle.style.color="#2e106a";
+  document.getElementById("tagTitle").textContent="Any Tag";
 tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
 } else if (tagSelect === 'nature') {
+  document.getElementById("tagTitle").textContent="Nature";
 tagID = ["==",["get","tag"],"nature"];
 } else if (tagSelect === 'bird') {
+  document.getElementById("tagTitle").textContent="Bird";
 tagID = ["==",["get","tag"],"bird"];
 } else if (tagSelect === 'insect') {
+  document.getElementById("tagTitle").textContent="Insect";
 tagID = ["==",["get","tag"],"insect"];
 } else {
 console.log('error');

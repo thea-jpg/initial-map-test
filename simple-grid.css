@@ -211,29 +211,54 @@ p {
 #console {
   position: absolute;
   margin: 10px;
-  padding: 10px 20px;
+}
+#genreTitle, #tagTitle{
+  min-width: 100px;
+  padding: 10px;
+  font-size: 1rem;
+    color:#2e106a;
   background-color: white;
 }
-
-#console ul{
+ul{
 list-style: none;
-background-color: inherit;
+margin: 0;
+   padding-left: 0;
 }
-#console ul li{
-        display: inline-block;
-        position: relative;
+
+ul li{
+display:inline-block;
+position: relative;
+
     }
-  #console ul li label{
-        display: block;
-        padding: 8px 25px;
-        color: #333;
-        text-decoration: none;
+    ul li ul {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      display: none;
     }
-  #console  ul li label:hover{
-        color: #fff;
-        background: #939393;
-    }
-/* TKpopup styling */
+
+ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+    float: left;
+  width: 100%;
+  min-width:100px;
+  background-color: #cccee1;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+ul li ul li:hover{
+background-color:#9c9ead;
+}
+[type="radio"]{
+  visibility: hidden;
+}
 .mapboxgl-popup-content {
   background-color: #cccee1;
   color:#2e106a;
