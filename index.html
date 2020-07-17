@@ -1,24 +1,28 @@
  <!DOCTYPE html>
  <html>
  	<head>
- 		<title>UFN iframe content</title>
+ 		<title>UFN fullscreen map</title>
  		<meta charset="utf-8"/>
  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
- 			<meta name="description" content="map iframe content">
+ 			<meta name="description" content="explore ufn stories">
  				<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
  				<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
  				<link href="simple-grid.css" rel="stylesheet">
  				</head>
  				<body>
- 					<!-- TK draws the map-->
+ 					<!-- TK #map contains the map-->
  					<div id="map"></div>
+          <!-- TK #console contains the filter selection -->
  					<div id="console">
  						<ul>
  							<li>
+                <!-- TK #genreTitle is set to Select Genre to begin, is replaced to reflect the chosen genre, using getElementById -->
  								<h2 id="genreTitle"></h2>
+                <!-- TK nested ul li for dropdowns, .filter-group styles in css, #filterGenre is used for js functions -->
  								<ul class='filter-group' id='filterGenre'>
  									<li>
  										<label>
+                      <!-- TK radio toggles for filtering-->
  											<input id='all' type='radio' name='toggle' value='all' checked='checked'>
                       all
  											</label>
@@ -42,8 +46,9 @@
  													</label>
  												</li>
  									</ul>
- 											</li>
- 											<li>
+ 									</li>
+ 									<li>
+                      <!-- TK #tagTitle is set to Select Tag to begin, is replaced to reflect the chosen tag, using getElementById -->
  												<h2 id="tagTitle"></h2>
  												<ul class='filter-group' id='filterTags'>
  													<li>
@@ -74,17 +79,17 @@
  															</li>
  														</ul>
  												</div>
- 													<script>
+ <script>
+ // TK authorizes use of the mapbox style
  mapboxgl.accessToken = "pk.eyJ1IjoidXJiYW4tZmllbGQtbmF0dXJhbGlzdCIsImEiOiJja2JsaDFxdGcxOTFmMnNvZG1sZWEydjJjIn0.gMgdHKd1MGd8y7GU-XX3pA";
- // TK filtering by tag below is majority from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/
- // TK ideally be able to pull this from the data is the map style being referenced, so as to make uploading changing data easier
+// TK var genreTitle and var tagTitle established here
 var genreTitle = document.getElementById("genreTitle");
 genreTitle.textContent = "Select Genre";
 var tagTitle = document.getElementById("tagTitle");
 tagTitle.textContent= "Select Tag";
-    var places =
- // TK geojson created w/in the dataset studio of mapbox, using placeholder values for the moment, exported as geojson file
- // TK	   variable 'tags' replaced by 'icons' for the moment, will be returned soon
+
+// TK var places currently holds JSON, will be replaced when remote JSON is working
+var places =
  {
 	 "type": "FeatureCollection",
 	 "features": [{
@@ -642,60 +647,49 @@ tagTitle.textContent= "Select Tag";
 	 ]
  };
 
-
-// TK variables above for genreFilter
-var genreFilter = document.getElementById('filter-genre');
-
 // TK draws map in #map
 var map = new mapboxgl.Map({
  container: "map",
- // TK this loaded style includes the dataset for filtering and location, and the map tile styling
+ // TK this loaded style is basically just map colours and text styling
  style: "mapbox://styles/urban-field-naturalist/ckbll7ri40jnf1ilpp9gcin4w",
- // TK set location for start of this story, point to I Saw a Swamp Rat (ahh!!)
- center: [
-	 -169.6200000000000045474735088646411895751953125,
-	 44.590000000000003410605131648480892181396484375
- ],
- zoom: 2
+ // TK zoom level at start is low for big map
+ zoom: 1.75
 });
 
+// TK add zoom controls
+map.addControl(new mapboxgl.NavigationControl({
+    // TK remove bearing/rotate control
+    showCompass: false
+}));
 
-// TK add navigation control
-var nav = new mapboxgl.NavigationControl();
-map.addControl(nav);
-
-// TK actual filtering of variables begins here
 map.on('load', function () {
-
 	// TK genreid and tagid do not equal placeholder
 	var genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
 	var tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
- // Add a GeoJSON source containing place coordinates and information.
+ // TK uses the json on 'places' for all markers/data on top of map
  map.addSource('places', {
 	 'type': 'geojson',
 	 'data': places
  });
 
-// TK for each feature in places, add a layer, separated by tag/genre
-
-   // console.log("checking id " + symbol)
-	 // Add a layer for this symbol type if it hasn't been added already.
+// TK for each feature in places, add a layer, separated by tag/genre as set via genreID and tagID
 		 map.addLayer({
 			 'id': 'stories',
 			 'type': 'circle',
 			 'source': 'places',
 			 'paint': {
-				 // make circles larger as the user zooms from z3 to z12 to z22
 				 'circle-radius': {
 					 'base': 6,
+           // TK change circle size moving through stops from z1,z9,z15
 					 'stops': [
-						 [8, 14],
-						 [22, 180]
+						 [4, 14],
+						 [9, 500],
+             [15,700]
 					 ]
 				 },
 				 // TK set circle opacity
 				 'circle-opacity': 0.6,
-				 // TK match colour expression to ttags using https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+				 // TK match colour expression to tags using https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
 				 'circle-color': [
 					 'match',
 					 ['get', 'tag'],
@@ -712,12 +706,11 @@ map.on('load', function () {
 			 // TK below mapbox filter specifies that the data displayed is all data encompassed by genreID and tagID
 'filter': ['all', genreID, tagID]
 		 });
-
-		 // TOGGLE genre TK
-		 // radio toggle principles here are from https://docs.mapbox.com/help/tutorials/show-changes-over-time/
+		 // TK radio toggle principles here are from https://docs.mapbox.com/help/tutorials/show-changes-over-time/
 		 document.getElementById('filterGenre').addEventListener('change', function(e) {
 // TK check id of clicked target
   var genreSelect= e.target.value;
+  // TK change genreTitle bg colour to indicate a filter has been applied
       genreTitle.style.backgroundColor="#cccee1";
       genreTitle.style.color="white";
   // TK update the map filter by referencing the selected target against the JSON in places
@@ -770,41 +763,31 @@ map.setFilter('stories', ['all', genreID, tagID]);
 
 
 		 		 // TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
-		 		 // TK use to focus and change zoom
-		 		 // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-
+		 		 // TK use to focus and change zoom, fly to and focus on teh coords of a clicked point
 		 		 map.on('click', 'stories', function (e) {
 		 			 // set zoom to fly-in
 		 			 map.flyTo({
 		 				 center: e.features[0].geometry.coordinates,
 		 				 zoom: 4
 		 			 });
-
 		 		 });
-
-		 		 // Change the cursor to a pointer when the it enters a feature in the 'symbols' layer.
 		 		 map.on('mouseenter', 'stories', function () {
 		 			 map.getCanvas().style.cursor = 'pointer';
 		 		 });
-
-		 		 // Change it back to a pointer when it leaves.
 		 		 map.on('mouseleave', 'stories', function () {
 		 			 map.getCanvas().style.cursor = '';
 		 		 });
 
 	 });
 
-// TK using code from https://docs.mapbox.com/help/tutorials/add-points-pt-3/ placeholder JSON I created
+// TK check if clicked point contains a rendered feature
 map.on('click', function (e) {
- // TK var pops identifies the marker pointed to
  var pops = map.queryRenderedFeatures(e.point, {
-	 data: 'places' // popups and filtering both draw from same geojson data
+	 data: 'places' //TK popups and filtering both draw from same geojson data
  });
-
  if (!pops.length) {
 	 return;
  }
-
  var pops = pops[0];
 
  // TK offset popup so it doesn't cover the marker

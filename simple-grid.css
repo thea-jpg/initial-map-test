@@ -183,7 +183,9 @@ p {
     display: none;
 }
 
-/* TK style map inside iframe */
+
+/* TK begin custom css for map */
+/* TK style map*/
 #map {
     position: absolute;
     top: 0;
@@ -224,6 +226,7 @@ p {
 }
 
 /*tk end of popup text styling */
+/* TK some of the dropdown function is from https://css-tricks.com/solved-with-css-dropdown-menus/ */
 ul {
     list-style: none;
     margin: 0;
@@ -233,8 +236,6 @@ ul {
 ul li {
     display: inline-block;
     position: relative;
-
-
 }
 
 ul li ul {
@@ -276,18 +277,15 @@ input[type="radio"] {
     height: 2em;
 }
 
-- .mapboxgl-popup {
-    background-color: #cccee1;
-}
-
+/* TK begin popup styling */
 .mapboxgl-popup-content {
+    background-color: #cccee1;
     color: #2e106a;
     max-height: 250px;
     margin: 0;
     padding: 15px;
 }
 
-/* TK abbreviated popup tip styling from https://stackoverflow.com/questions/44554692/style-a-mapbox-popups-pointer-indicator*/
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
     border-bottom-color: #cccee1;
 }
@@ -304,8 +302,10 @@ input[type="radio"] {
     border-left-color: #cccee1;
 }
 
-/* TK end copy */
+/* TK end popup styling */
 /* TK end custom css */
+
+
 @media only screen and (min-width: 33.75em) {
 
     /* 540px */
