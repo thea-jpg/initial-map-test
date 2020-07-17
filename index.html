@@ -1,79 +1,80 @@
  <!DOCTYPE html>
-<html>
-<head>
-	<title>UFN iframe content</title>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="map iframe content">
-<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
-<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
-<link href="simple-grid.css" rel="stylesheet">
-</head>
-<body>
-				<!-- TK draws the map-->
-				<div id="map"></div>
-<div id="console">
-    <ul>
-<li><h2 id="genreTitle"></h2>
-  <ul class='filter-group' id='filterGenre'>
-	<li>
-    <label>
-      <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-      all
-    </label>
-  </li>
-  <li>
-    <label>
-      <input id='fiction' type='radio' name='toggle' value='fiction'>
-      fiction
-    </label>
-  </li>
-  <li>
-    <label>
-      <input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
-      non-fiction
-    </label>
-  </li>
-  <li>
-    <label>
-      <input id='poetry' type='radio' name='toggle' value='poetry'>
-      poetry
-    </label>
-  </li>
-  </ul>
-</li>
-<li>
-	<h2 id="tagTitle"></h2>
-	<ul class='filter-group' id='filterTags'>
-    <li>
-      <label>
-        <input id='all' type='radio' name='toggle' value='all' checked='checked'>
-        all
-      </label>
-    </li>
-    <li>
-      <label>
-        <input id='nature' type='radio' name='toggle' value='nature'>
-        nature
-      </label>
-    </li>
-    <li>
-      <label>
-        <input id='bird' type='radio' name='toggle' value='bird'>
-        bird
-      </label>
-    </li>
-    <li>
-      <label>
-        <input id='insect' type='radio' name='toggle' value='insect'>
-        insect
-      </label>
-    </li>
-  </ul>
-</li>
-  </ul>
-</div>
-<script>
+ <html>
+ 	<head>
+ 		<title>UFN iframe content</title>
+ 		<meta charset="utf-8"/>
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 			<meta name="description" content="map iframe content">
+ 				<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+ 				<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
+ 				<link href="simple-grid.css" rel="stylesheet">
+ 				</head>
+ 				<body>
+ 					<!-- TK draws the map-->
+ 					<div id="map"></div>
+ 					<div id="console">
+ 						<ul>
+ 							<li>
+ 								<h2 id="genreTitle"></h2>
+ 								<ul class='filter-group' id='filterGenre'>
+ 									<li>
+ 										<label>
+ 											<input id='all' type='radio' name='toggle' value='all' checked='checked'>
+                      all
+ 											</label>
+ 										</li>
+ 										<li>
+ 											<label>
+ 												<input id='fiction' type='radio' name='toggle' value='fiction'>
+                        fiction
+ 												</label>
+ 											</li>
+ 											<li>
+ 												<label>
+ 													<input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
+                          non-fiction
+ 													</label>
+ 											</li>
+ 											<li>
+ 													<label>
+ 														<input id='poetry' type='radio' name='toggle' value='poetry'>
+                            poetry
+ 													</label>
+ 												</li>
+ 									</ul>
+ 											</li>
+ 											<li>
+ 												<h2 id="tagTitle"></h2>
+ 												<ul class='filter-group' id='filterTags'>
+ 													<li>
+ 														<label>
+ 															<input id='all' type='radio' name='toggle' value='all' checked='checked'>
+                              all
+ 															</label>
+ 														</li>
+ 														<li>
+ 															<label>
+ 																<input id='nature' type='radio' name='toggle' value='nature'>
+                                nature
+ 																</label>
+ 															</li>
+ 															<li>
+ 																<label>
+ 																	<input id='bird' type='radio' name='toggle' value='bird'>
+                                  bird
+ 																</label>
+ 																</li>
+ 																<li>
+ 																	<label>
+ 																		<input id='insect' type='radio' name='toggle' value='insect'>
+                                    insect
+ 																		</label>
+ 																	</li>
+ 																</ul>
+ 															</li>
+ 														</ul>
+ 												</div>
+ 													<script>
  mapboxgl.accessToken = "pk.eyJ1IjoidXJiYW4tZmllbGQtbmF0dXJhbGlzdCIsImEiOiJja2JsaDFxdGcxOTFmMnNvZG1sZWEydjJjIn0.gMgdHKd1MGd8y7GU-XX3pA";
  // TK filtering by tag below is majority from https://docs.mapbox.com/mapbox-gl-js/example/filter-markers/
  // TK ideally be able to pull this from the data is the map style being referenced, so as to make uploading changing data easier
