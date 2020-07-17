@@ -23,18 +23,6 @@ or this for a tag:
 Again, replace placeholder with the chosen string.
 
 ## Focus map on a particular story location:
-Within:
-var map = new mapboxgl.Map({
- container: "map",
- // TK this loaded style is basically just map colours and text styling
- style: "mapbox://styles/urban-field-naturalist/ckbll7ri40jnf1ilpp9gcin4w",
- // TK set location for start of this story, point to 'One Good Tern ..'
- 		center: [
-      -81.0100000000000051159076974727213382720947265625,
-      1.2600000000000000088817841970012523233890533447265625
-    ],
-    // TK zoom level at start is low for big map
- zoom: 2
-});
+Within var map = new mapboxgl.Map({
 
-Set center:[] to include the co-ords of the chosen story, this data should be in the JSON
+Add a line with center:[-x,y], where -x,y are the co-ordinates of the chosen story. The co-ords can be copied from the JSON
