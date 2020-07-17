@@ -268,8 +268,10 @@ input[type="radio"]{
   height:2em;
 }
 -
-.mapboxgl-popup-content {
+.mapboxgl-popup{
   background-color: #cccee1;
+}
+.mapboxgl-popup-content {
   color:#2e106a;
 max-height:250px;
   margin: 0;
