@@ -11,74 +11,263 @@
  				</head>
  				<body>
  					<!-- TK #map contains the map-->
- 					<div id="map"></div>
+          <div id="map"></div>
           <!-- TK #console contains the filter selection -->
- 					<div id="console">
- 						<ul>
- 							<li>
+          <div id="console">
+            <ul>
+              <li>
                 <!-- TK #genreTitle is set to Select Genre to begin, is replaced to reflect the chosen genre, using getElementById -->
- 								<h2 id="genreTitle"></h2>
+                <h2 id="genreTitle"></h2>
                 <!-- TK nested ul li for dropdowns, .filter-group styles in css, #filterGenre is used for js functions -->
- 								<ul class='filter-group' id='filterGenre'>
- 									<li>
- 										<label>
-                      <!-- TK radio toggles for filtering-->
- 											<input id='all' type='radio' name='toggle' value='all' checked='checked'>
+                <ul class='filter-group' id='filterGenre'>
+                  <li>
+                    <label>
+                      <input id='all' type='radio' name='toggle' value='all' checked='checked'>
                       all
- 											</label>
- 										</li>
- 										<li>
- 											<label>
- 												<input id='fiction' type='radio' name='toggle' value='fiction'>
-                        fiction
- 												</label>
- 											</li>
- 											<li>
- 												<label>
- 													<input id='non-fiction' type='radio' name='toggle' value='non-fiction'>
-                          non-fiction
- 													</label>
- 											</li>
- 											<li>
- 													<label>
- 														<input id='poetry' type='radio' name='toggle' value='poetry'>
-                            poetry
- 													</label>
- 												</li>
- 									</ul>
- 									</li>
- 									<li>
+                      </label>
+                    </li>
+                    <!-- TK radio toggles for filtering-->
+                    <li>
+                      <label>
+                        <input id='adventure' type='radio' name='toggle' value='adventure'>
+                        adventure
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='comedy' type='radio' name='toggle' value='comedy'>
+                        comedy
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='crime and mystery' type='radio' name='toggle' value='crime and mystery'>
+                        crime and mystery
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='documentary' type='radio' name='toggle' value='documentary'>
+                        documentary
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='drama' type='radio' name='toggle' value='drama'>
+                        drama
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='fantasy' type='radio' name='toggle' value='fantasy'>
+                        fantasy
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='film noir' type='radio' name='toggle' value='film noir'>
+                        film noir
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='historical' type='radio' name='toggle' value='historical'>
+                        historical
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='horror' type='radio' name='toggle' value='horror'>
+                        horror
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='musical' type='radio' name='toggle' value='musical'>
+                        musical
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='romance' type='radio' name='toggle' value='romance'>
+                        romance
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='sci-fi' type='radio' name='toggle' value='sci-fi'>
+                        sci-fi
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='sport' type='radio' name='toggle' value='sport'>
+                        sport
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='superhero' type='radio' name='toggle' value='superhero'>
+                        superhero
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input id='war' type='radio' name='toggle' value='war'>
+                        war
+                      </label>
+                    </li>
+                  </ul>
+                  </li>
+                  <li>
                       <!-- TK #tagTitle is set to Select Tag to begin, is replaced to reflect the chosen tag, using getElementById -->
- 												<h2 id="tagTitle"></h2>
- 												<ul class='filter-group' id='filterTags'>
- 													<li>
- 														<label>
- 															<input id='all' type='radio' name='toggle' value='all' checked='checked'>
+                        <h2 id="tagTitle"></h2>
+                        <ul class='filter-group' id='filterTags'>
+                          <li>
+                            <label>
+                              <input id='all' type='radio' name='toggle' value='all' checked='checked'>
                               all
- 															</label>
- 														</li>
- 														<li>
- 															<label>
- 																<input id='nature' type='radio' name='toggle' value='nature'>
-                                nature
- 																</label>
- 															</li>
- 															<li>
- 																<label>
- 																	<input id='bird' type='radio' name='toggle' value='bird'>
-                                  bird
- 																</label>
- 																</li>
- 																<li>
- 																	<label>
- 																		<input id='insect' type='radio' name='toggle' value='insect'>
-                                    insect
- 																		</label>
- 																	</li>
- 																</ul>
- 															</li>
- 														</ul>
- 												</div>
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='mammals' type='radio' name='toggle' value='mammals'>
+                                mammals
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='birds' type='radio' name='toggle' value='birds'>
+                                birds
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='reptiles' type='radio' name='toggle' value='reptiles'>
+                                reptiles
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='amphibians' type='radio' name='toggle' value='amphibians'>
+                                amphibians
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='fish' type='radio' name='toggle' value='fish'>
+                                fish
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='spiders' type='radio' name='toggle' value='spiders'>
+                                spiders
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='arachnids' type='radio' name='toggle' value='arachnids'>
+                                arachnids
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='insects' type='radio' name='toggle' value='insects'>
+                                insects
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='crustaceans' type='radio' name='toggle' value='crustaceans'>
+                                crustaceans
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='molluscs' type='radio' name='toggle' value='molluscs'>
+                                molluscs
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='worms' type='radio' name='toggle' value='worms'>
+                                worms
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='echinoderms' type='radio' name='toggle' value='echinoderms'>
+                                echinoderms
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='invertebrates' type='radio' name='toggle' value='invertebrates'>
+                                invertebrates
+                              </label>
+                            </li>
+
+                            <li>
+                              <label>
+                                <input id='trees' type='radio' name='toggle' value='trees'>
+                                trees
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='shrubs' type='radio' name='toggle' value='shrubs'>
+                                shrubs
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='grasses' type='radio' name='toggle' value='grasses'>
+                                grasses
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='flowers' type='radio' name='toggle' value='flowers'>
+                                flowers
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='plants' type='radio' name='toggle' value='plants'>
+                                plants
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='fungi' type='radio' name='toggle' value='fungi'>
+                                fungi
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='bacteria' type='radio' name='toggle' value='bacteria'>
+                                bacteria
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='other' type='radio' name='toggle' value='other'>
+                                other
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input id='various' type='radio' name='toggle' value='various'>
+                                various
+                              </label>
+                            </li>
+
+
+                                </ul>
+                              </li>
+                            </ul>
+                        </div>
  <script>
  // TK authorizes use of the mapbox style
  mapboxgl.accessToken = "pk.eyJ1IjoidXJiYW4tZmllbGQtbmF0dXJhbGlzdCIsImEiOiJja2JsaDFxdGcxOTFmMnNvZG1sZWEydjJjIn0.gMgdHKd1MGd8y7GU-XX3pA";
@@ -130,7 +319,7 @@ var places =
 				 "name": "Hiding in plain sight?",
 				 "storyFullText": "At nearly 70cm from bill to tail, the yellow-tailed black-cockatoo (*Calyptorhynchus funereus*) is Australia’s largest parrot, so you’d think it unlikely a flock of them would go unnoticed in a suburban street. But many residents of Sandringham in Melbourne’s south east seem to have been unaware of the presence of these magnificent birds. \n\nWe were on a neighbourhood walk when we saw tell-tale signs: big pieces of pine cone, freshly chewed, strewn about the footpath. A quick scan up and around, and there they were in the tops of a few tall trees. One landed briefly on a front fence, another on a carport roof, before flying back up to the anonymity of the treetops. After a few minutes, by tacit agreement, they flew off out of sight.\n\nMore Melburnians are reporting sightings of yellow-tailed black-cockatoos in the suburbs this autumn; some have asked me if their presence is a consequence of last summer’s vast bushfires in south-eastern Australia. I think it’s more likely they’ve been quietly visiting the suburbs to feast on pine cones and other treats for many years, but are being noticed - often for the first time - by people with more time to spend in their gardens, to walk in local streets, and to pause in parks and reserves... thanks to Covid-19.",
 				 "date": "2020-06-01",
-				 "genre": "poetry",
+				 "genre": "drama",
 				 "tag": "nature",
 				 "location": "Sandringham, Victoria",
 				 "excerpt": "We were on a neighbourhood walk when we saw tell-tale signs: big pieces of pine cone, freshly chewed, strewn about the footpath. A quick scan up and around, and there they were in the tops of a few tall trees.",
@@ -154,7 +343,7 @@ var places =
 				 "name": "Making a splash: The arrival of ocean giants to our doorstep",
 				 "storyFullText": "Autumn and winter are one of my favourite times of the year. The weather is getting cooler and the change of season marks the annual arrival of one of the world’s biggest animals, humpback whales. Each year, these ocean giants the size of a school bus appear in our Sydney marine backyard. They travel northward along the humpback whale highway, which hugs the east coast on course to their warmer water breeding/calving grounds of the Great Barrier Reef. They have spent the summer in Antarctica where they annually feed on Antarctica Krill, tiny crustaceans around 1-2cm long. \n\nI have been whale watching off Sydney for nearly 10 years and feel privileged to have these animals in our backyard. This means a lot to me as a former Canberran, having grown up on a farm three hours away from the closest beach. I’ve also worked around humpback whales as a naturalist and spent years studying them on Sydney cliffs and offshore for my PhD.\n\nI recall an amazing interaction I had with two whales one October during the southward migration. It was as if myself and the team were the most interesting things they had ever seen. Two adult whales approached our boat and started mugging us, a behaviour where the whales circle the boat (no loss of money). All we could do was turn our boat engine off and enjoy. They spent hours rolling around and spy hopping, a behaviour where a whale brings its mouth and eye out of the water. It was such a magnificent interaction, which allowed me to snap some fantastic photos. A truly memorable moment and one I hope to have again off Sydney.",
 				 "date": "2020-06-01",
-				 "genre": "poetry",
+				 "genre": "film noir",
 				 "tag": "nature",
 				 "location": "Sydney coast, NSW",
 				 "excerpt": "Two adult whales approached our boat and started mugging us, a behaviour where the whales circle the boat (no loss of money). All we could do was turn our boat engine off and enjoy.",
@@ -586,8 +775,8 @@ var places =
 				 "name": "I Saw a Swamp Rat (ahh!!)",
 				 "storyFullText": "I’m sitting on a park bench looking over the Nepean River. At my feet are sedges and shrubs, and weeds and grasses. Out of the corner of my eye I see something move. I look down to find a dark, furry creature with beady black eyes staring up at me. It’s a native swamp rat. It’s wary of me but it doesn’t seem scared; there’s bigger fish to fry. The rat is eyeing off a stem with flowers, a tasty morsel that might be worth grabbing even in the face of a potential predator.\n\nIt doesn’t let me stand in the way. The rat scurries by my feet, reaches up on its hind legs, chomps off the stem, and hurries to safety. Never mind that I am only a metre away, or that there’s a crowd of people nearby. It ventures out again and again looking for more food. I’m stunned.\n\nSwamp rats are diurnal rodents found along Australia’s east coast. They create tunnels through vegetation and feed on sedge and grass stems. This is the first time I've ever seen one. What’s most amazing is that behind me there’s a busy road and a bustling café, but it’s business as usual for this swamp rat.\t \n\nThe Nepean River near Emu Plains is a popular place for walking and it’s busier than ever with the current (COVID) restrictions. Morning here is filled with the trills, squeaks, and chitters of wrens, finches, and wagtails. Noon is quieter, but if you’ve got a sharp eye you might spot a sunbathing red-bellied black snake or an eastern water dragon (you might almost step on one!). If you’re looking up, you might be lucky enough to see a soaring white-bellied sea-eagle. People come to the river to exercise but there’s so much to see if you’re paying attention. This place is a treasure.",
 				 "date": "2020-05-20",
-				 "genre": "fiction",
-				 "tag": "nature",
+				 "genre": "drama",
+				 "tag": "birds",
 				 "location": "N/A",
 				 "excerpt": "The swamp rat is eyeing off a stem with flowers, a tasty morsel that might be worth grabbing even in the face of a potential predator.",
 				 "coverImage": "- casey-taylor_swamp-rat.1.jpg",
@@ -662,6 +851,7 @@ map.addControl(new mapboxgl.NavigationControl({
     showCompass: false
 }));
 
+
 map.on('load', function () {
 	// TK genreid and tagid do not equal placeholder
 	var genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
@@ -690,18 +880,19 @@ map.on('load', function () {
 				 // TK set circle opacity
 				 'circle-opacity': 0.6,
 				 // TK match colour expression to tags using https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-				 'circle-color': [
-					 'match',
-					 ['get', 'tag'],
-					 'a',
-					 '#18151f',
-					 'insect',
-					 '#373047',
-					 'bird',
-					 '#60547d',
+				 // 'circle-color': [
+					//  'match',
+					//  ['get', 'tag'],
+					//  'a',
+					//  '#18151f',
+					//  'insect',
+					//  '#373047',
+					//  'bird',
+					//  '#60547d',
 					 /* other */
+           'circle-color':
 					 '#ccc'
-				 ]
+
 			 },
 			 // TK below mapbox filter specifies that the data displayed is all data encompassed by genreID and tagID
 'filter': ['all', genreID, tagID]
@@ -714,21 +905,59 @@ map.on('load', function () {
       genreTitle.style.backgroundColor="#cccee1";
       genreTitle.style.color="white";
   // TK update the map filter by referencing the selected target against the JSON in places
-  if (genreSelect=== 'all') {
+  if (genreSelect === 'all') {
     genreTitle.textContent="All Genres";
     genreTitle.style.backgroundColor="white";
     genreTitle.style.color="#2e106a";
+    document.getElementById("genreTitle").textContent="Any Genre";
     genreID = ['!=', ['string', ['get', 'genre']], 'placeholder'];
-  } else if (genreSelect === 'fiction') {
-    document.getElementById("genreTitle").textContent="Fiction";
-    genreID = ["==",["get","genre"],"fiction"];
-  } else if (genreSelect === 'non-fiction') {
-      document.getElementById("genreTitle").textContent="Non-Fiction";
-    genreID = ["==",["get","genre"],"non-fiction"];
-  } else if (genreSelect === 'poetry') {
-      document.getElementById("genreTitle").textContent="Poetry";
-    genreID = ["==",["get","genre"],"poetry"];
-  } else {
+  } else if (genreSelect === 'adventure') {
+  document.getElementById("genreTitle").textContent="adventure";
+  genreID = ["==",["get","genre"],"adventure"];
+  } else if (genreSelect === 'comedy') {
+  document.getElementById("genreTitle").textContent="comedy";
+  genreID = ["==",["get","genre"],"comedy"];
+  } else if (genreSelect === 'crime and mystery') {
+    document.getElementById("genreTitle").textContent="crime and mystery";
+  genreID = ["==",["get","genre"],"crime and mystery"];
+  } else if (genreSelect === 'documentary') {
+      document.getElementById("genreTitle").textContent="documentary";
+  genreID = ["==",["get","genre"],"documentary"];
+  } else if (genreSelect === 'drama') {
+      document.getElementById("genreTitle").textContent="drama";
+  genreID = ["==",["get","genre"],"drama"];
+  } else if (genreSelect === 'fantasy') {
+      document.getElementById("genreTitle").textContent="fantasy";
+  genreID = ["==",["get","genre"],"fantasy"];
+  } else if (genreSelect === 'film noir') {
+      document.getElementById("genreTitle").textContent="film noir";
+  genreID = ["==",["get","genre"],"film noir"];
+  } else if (genreSelect === 'historical') {
+      document.getElementById("genreTitle").textContent="historical";
+  genreID = ["==",["get","genre"],"historical"];
+  } else if (genreSelect === 'horror') {
+      document.getElementById("genreTitle").textContent="horror";
+  genreID = ["==",["get","genre"],"horror"];
+  } else if (genreSelect === 'musical') {
+      document.getElementById("genreTitle").textContent="musical";
+  genreID = ["==",["get","genre"],"musical"];
+  } else if (genreSelect === 'romance') {
+      document.getElementById("genreTitle").textContent="romance";
+  genreID = ["==",["get","genre"],"romance"];
+  } else if (genreSelect === 'sci-fi') {
+      document.getElementById("genreTitle").textContent="sci-fi";
+  genreID = ["==",["get","genre"],"sci-fi"];
+  } else if (genreSelect === 'sport') {
+      document.getElementById("genreTitle").textContent="sport";
+  genreID = ["==",["get","genre"],"sport"];
+  } else if (genreSelect === 'superhero') {
+      document.getElementById("genreTitle").textContent="superhero";
+  genreID = ["==",["get","genre"],"superhero"];
+  } else if (genreSelect === 'war') {
+      document.getElementById("genreTitle").textContent="war";
+  genreID = ["==",["get","genre"],"war"];
+  }
+  else {
     console.log('error');
   }
 	// TK narrow what appaears through the filter by changing what genreID encompasses, and then only showing the data that is included in the combination of a narrower genreID and the selected tagID
@@ -739,27 +968,84 @@ var tagSelect = e.target.value;
     tagTitle.style.backgroundColor="#cccee1";
     tagTitle.style.color="white";
 if (tagSelect === 'all') {
-      tagTitle.textContent="All Tags";
+      tagTitle.textContent="All Taxonomies";
       tagTitle.style.backgroundColor="white";
       tagTitle.style.color="#2e106a";
-  document.getElementById("tagTitle").textContent="Any Tag";
+  document.getElementById("tagTitle").textContent="Any Taxonomy";
 tagID = ['!=', ['string', ['get', 'tag']], 'placeholder'];
-} else if (tagSelect === 'nature') {
-  document.getElementById("tagTitle").textContent="Nature";
-tagID = ["==",["get","tag"],"nature"];
-} else if (tagSelect === 'bird') {
-  document.getElementById("tagTitle").textContent="Bird";
-tagID = ["==",["get","tag"],"bird"];
-} else if (tagSelect === 'insect') {
-  document.getElementById("tagTitle").textContent="Insect";
-tagID = ["==",["get","tag"],"insect"];
-} else {
+} else if (tagSelect === 'mammals') {
+  document.getElementById("tagTitle").textContent="mammals";
+tagID = ["==",["get","tag"],"mammals"];
+} else if (tagSelect === 'birds') {
+  document.getElementById("tagTitle").textContent="birds";
+tagID = ["==",["get","tag"],"birds"];
+} else if (tagSelect === 'reptiles') {
+  document.getElementById("tagTitle").textContent="reptiles";
+tagID = ["==",["get","tag"],"reptiles"];
+} else if (tagSelect === 'amphibians') {
+  document.getElementById("tagTitle").textContent="amphibians";
+tagID = ["==",["get","tag"],"amphibians"];
+} else if (tagSelect === 'fish') {
+  document.getElementById("tagTitle").textContent="fish";
+tagID = ["==",["get","tag"],"fish"];
+} else if (tagSelect === 'spiders') {
+  document.getElementById("tagTitle").textContent="spiders";
+tagID = ["==",["get","tag"],"spiders"];
+} else if (tagSelect === 'arachnids') {
+  document.getElementById("tagTitle").textContent="arachnids";
+tagID = ["==",["get","tag"],"arachnids"];
+} else if (tagSelect === 'insects') {
+  document.getElementById("tagTitle").textContent="insects";
+tagID = ["==",["get","tag"],"insects"];
+} else if (tagSelect === 'crustaceans') {
+  document.getElementById("tagTitle").textContent="crustaceans";
+tagID = ["==",["get","tag"],"crustaceans"];
+} else if (tagSelect === 'molluscs') {
+  document.getElementById("tagTitle").textContent="molluscs";
+tagID = ["==",["get","tag"],"molluscs"];
+} else if (tagSelect === 'worms') {
+  document.getElementById("tagTitle").textContent="worms";
+tagID = ["==",["get","tag"],"worms"];
+} else if (tagSelect === 'echinoderms') {
+  document.getElementById("tagTitle").textContent="echinoderms";
+tagID = ["==",["get","tag"],"echinoderms"];
+} else if (tagSelect === 'invertebrates') {
+  document.getElementById("tagTitle").textContent="invertebrates";
+tagID = ["==",["get","tag"],"invertebrates"];
+} else if (tagSelect === 'trees') {
+  document.getElementById("tagTitle").textContent="trees";
+tagID = ["==",["get","tag"],"trees"];
+} else if (tagSelect === 'shrubs') {
+  document.getElementById("tagTitle").textContent="shrubs";
+tagID = ["==",["get","tag"],"shrubs"];
+} else if (tagSelect === 'grasses') {
+  document.getElementById("tagTitle").textContent="grasses";
+tagID = ["==",["get","tag"],"grasses"];
+} else if (tagSelect === 'flowers') {
+  document.getElementById("tagTitle").textContent="flowers";
+tagID = ["==",["get","tag"],"flowers"];
+} else if (tagSelect === 'plants') {
+  document.getElementById("tagTitle").textContent="plants";
+tagID = ["==",["get","tag"],"plants"];
+} else if (tagSelect === 'fungi') {
+  document.getElementById("tagTitle").textContent="fungi";
+tagID = ["==",["get","tag"],"fungi"];
+} else if (tagSelect === 'bacteria') {
+  document.getElementById("tagTitle").textContent="bacteria";
+tagID = ["==",["get","tag"],"bacteria"];
+} else if (tagSelect === 'other') {
+  document.getElementById("tagTitle").textContent="other";
+tagID = ["==",["get","tag"],"other"];
+} else if (tagSelect === 'various') {
+  document.getElementById("tagTitle").textContent="various";
+tagID = ["==",["get","tag"],"various"];
+}
+ else {
 console.log('error');
 }
 // TK same as above but now changing the value of tagID
 map.setFilter('stories', ['all', genreID, tagID]);
 });
-
 
 
 		 		 // TK following three instructions with map.on are from https://docs.mapbox.com/mapbox-gl-js/example/center-on-symbol/
