@@ -148,3 +148,35 @@ function getJsonObject(cb){
         }
     }
 }
+
+// AB - here is a function to test geocoding
+function doGeocodeing(){
+
+  var theURL = "https://api.mapbox.com/geocoding/v5/mapbox.places/penrith%20australia.json?access_token=pk.eyJ1IjoidWZubWFwdGVzdCIsImEiOiJja2FybjQ0b2kwbzNoMnhwbG1oNnBwbzh6In0.IEdNzx7pvq0qiHAIZQckJw"
+
+  var request = new XMLHttpRequest();
+  request.open('GET', theURL, true);
+  request.send(null);
+  request.onreadystatechange = function () {
+      if (request.readyState === 4 && request.status === 200) {
+          var type = request.getResponseHeader('Content-Type');
+
+                 try {
+                  console.log(request.responseText);
+                 }catch(err) {
+                   console.log(err);
+                 }
+      }
+  }
+  /**
+  geocodingClient.forwardGeocode({
+  query: 'Paris, France',
+  limit: 2
+  })
+    .send()
+    .then(response => {
+      const match = response.body;
+      console.log(response.body);
+    });
+  **/
+}
